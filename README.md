@@ -35,10 +35,10 @@ SP-DTI is based on our previous project, [FlexMol](https://github.com/Steven5151
 Please download the dataset from the [MolTrans repository](https://github.com/kexinhuang12345/MolTrans?tab=readme-ov-file) for the data splits of DAVIS and BIOSNAP.
 
 ### Step 2: Generate 3D Protein Structures
-We use AlphaFold to convert protein sequences into 3D structures. You can download our precomputed AlphaFold results here: [BIOSNAP](https://drive.google.com/file/d/1bldeecpr5g9Q-qlTeHjdm5Z0MYG2j2Oa/view?usp=sharing)/[DAVIS](https://drive.google.com/file/d/198p6QG_WuSAl425y1OXtfR8TFunQbX6v/view?usp=sharing).
+We use AlphaFold to convert protein sequences into 3D structures. You can download our precomputed AlphaFold results here: [BIOSNAP](https://drive.google.com/file/d/1wghlbfO1f5Zl1N7azvqZTOk93pYzc8EF/view?usp=drive_link)/[DAVIS](https://drive.google.com/file/d/198p6QG_WuSAl425y1OXtfR8TFunQbX6v/view?usp=sharing).
 
 ### Step 3: Identify Subpockets
-Our method utilizes the CAVIAR algorithm to identify subpockets from the AlphaFold-generated structures. For sample scripts to run CAVIAR, please refer to our [Google Colab](https://colab.research.google.com/drive/1H2-uZiczJNkzgtFVR4Lq-oR99olTstlu?usp=sharing). Alternatively, you can download our processed dataset here: [Google Drive Link](https://drive.google.com/file/d/1hvQR5iB9QW_xEyBMhQp0cZtJlk2QEXN_/view?usp=sharing).
+Our method utilizes the CAVIAR algorithm to identify subpockets from the AlphaFold-generated structures. For sample scripts to run CAVIAR, please refer to our [Google Colab](https://colab.research.google.com/drive/1H2-uZiczJNkzgtFVR4Lq-oR99olTstlu?usp=sharing). Alternatively, you can download our processed dataset here: [DAVIS](https://drive.google.com/file/d/1hvQR5iB9QW_xEyBMhQp0cZtJlk2QEXN_/view?usp=sharing)/Biosnap[https://drive.google.com/file/d/1XWL9AZktsImQ5-szgT0_0afLYHG6xQjd/view?usp=sharing].
 
 ### Dataset Organization
 We recommend structuring the dataset in the following format:
