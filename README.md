@@ -38,7 +38,7 @@ Please download the dataset from the [MolTrans repository](https://github.com/ke
 We use AlphaFold to convert protein sequences into 3D structures. You can download our precomputed AlphaFold results here: [BIOSNAP](https://drive.google.com/file/d/1wghlbfO1f5Zl1N7azvqZTOk93pYzc8EF/view?usp=drive_link)/[DAVIS](https://drive.google.com/file/d/198p6QG_WuSAl425y1OXtfR8TFunQbX6v/view?usp=sharing).
 
 ### Step 3: Identify Subpockets
-Our method utilizes the CAVIAR algorithm to identify subpockets from the AlphaFold-generated structures. For sample scripts to run CAVIAR, please refer to our [Google Colab](https://colab.research.google.com/drive/1H2-uZiczJNkzgtFVR4Lq-oR99olTstlu?usp=sharing). Alternatively, you can download our processed dataset here: [DAVIS](https://drive.google.com/file/d/1hvQR5iB9QW_xEyBMhQp0cZtJlk2QEXN_/view?usp=sharing)/Biosnap[https://drive.google.com/file/d/1XWL9AZktsImQ5-szgT0_0afLYHG6xQjd/view?usp=sharing].
+Our method utilizes the CAVIAR algorithm to identify subpockets from the AlphaFold-generated structures. For sample scripts to run CAVIAR, please refer to our [Google Colab](https://colab.research.google.com/drive/1H2-uZiczJNkzgtFVR4Lq-oR99olTstlu?usp=sharing). Alternatively, you can download our processed dataset here: [DAVIS](https://drive.google.com/file/d/1hvQR5iB9QW_xEyBMhQp0cZtJlk2QEXN_/view?usp=sharing)/[BIOSNAP](https://drive.google.com/file/d/1XWL9AZktsImQ5-szgT0_0afLYHG6xQjd/view?usp=sharing).
 
 ### Dataset Organization
 We recommend structuring the dataset in the following format:
