@@ -1,4 +1,4 @@
-
+import os
 from FlexMol.util.biochem.BPEEncoder import BPEEncoder
 from .base import Featurizer
 from sklearn.preprocessing import OneHotEncoder
@@ -144,10 +144,10 @@ class ChemBERTaFeaturizer(Featurizer):
 class DrugChemBertFeaturizer(Featurizer):
     def __init__(self):
         super().__init__()
-        model_name = "/root/sliu/BioEncoder/ChemBERTa-77M-MLM"
+        model_name = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "pretrained", "ChemBERTa-77M-MLM")
         new_tokenizer = Tokenizer(
             WordLevel.from_file(
-                '/root/sliu/BioEncoder/ChemBERTa-77M-MLM/vocab.json', 
+                os.path.join(model_name, 'vocab.json'),
                 unk_token='[UNK]'
         ))
 

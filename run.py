@@ -49,9 +49,9 @@ def main():
     args = parser.parse_args()
 
 
-    train = load_data(args.train_split, args.task).head(2)
-    val = load_data(args.val_split, args.task).head(2)
-    test = load_data(args.test_split, args.task).head(2)
+    train = load_data(args.train_split, args.task).head(10)
+    val = load_data(args.val_split, args.task).head(10)
+    test = load_data(args.test_split, args.task).head(10)
 
     if not os.path.exists(args.pdb_dir):
         raise FileNotFoundError(f"PDB directory not found at {args.pdb_dir}")

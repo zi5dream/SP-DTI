@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import sys
 import contextlib
+import esm as esm_module
 
 @contextlib.contextmanager
 def suppress_stdout():
@@ -19,13 +20,36 @@ def suppress_stdout():
 with suppress_stdout():
     from graphein.protein.edges.distance import add_hydrogen_bond_interactions, add_k_nn_edges, add_peptide_bonds
     from graphein.protein.features.nodes.amino_acid import amino_acid_one_hot, hydrogen_bond_acceptor, hydrogen_bond_donor
-    from graphein.protein.features.sequence.embeddings import compute_esm_embedding
     from graphein.protein.features.sequence.utils import (
         subset_by_node_feature_value,
     )
     from graphein.protein.graphs import initialise_graph_with_metadata, add_nodes_to_graph
     from graphein.protein.graphs import annotate_node_metadata, annotate_graph_metadata, annotate_edge_metadata, compute_edges
     from graphein.protein.graphs import process_dataframe, deprotonate_structure, convert_structure_to_centroids, remove_insertions
+
+# Preload ESM model using esm package directly (bypasses torch.hub GitHub API)
+_esm_model = None
+_esm_alphabet = None
+_esm_batch_converter = None
+
+def _get_esm_model(model_name="esm1b_t33_650M_UR50S"):
+    global _esm_model, _esm_alphabet, _esm_batch_converter
+    if _esm_model is None:
+        _esm_model, _esm_alphabet = esm_module.pretrained.load_model_and_alphabet(model_name)
+        _esm_batch_converter = _esm_alphabet.get_batch_converter()
+    return _esm_model, _esm_alphabet, _esm_batch_converter
+
+
+def compute_esm_direct(sequence, model_name="esm1b_t33_650M_UR50S", output_layer=33):
+    model, alphabet, batch_converter = _get_esm_model(model_name)
+    model.eval()
+    data = [("protein", sequence)]
+    batch_labels, batch_strs, batch_tokens = batch_converter(data)
+    layer = min(output_layer, model.num_layers) - 1
+    with torch.no_grad():
+        results = model(batch_tokens, repr_layers=[layer])
+    token_representations = results["representations"][layer]
+    return token_representations.cpu().numpy()
 
 
 import networkx as nx
@@ -278,7 +302,7 @@ def compute_esm_embedding_long(sequence, representation="residue", model_name="e
         start_idx = i * (chunk_size - overlap_size)
         end_idx = min(start_idx + chunk_size, seq_length)
 
-        chunk_embedding = compute_esm_embedding(sequence[start_idx:end_idx], representation, model_name, output_layer)
+        chunk_embedding = compute_esm_direct(sequence[start_idx:end_idx], model_name, output_layer)
         chunk_embedding = chunk_embedding[0, 1:-1] 
 
         if token_dim is None:
